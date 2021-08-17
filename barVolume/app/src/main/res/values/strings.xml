@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BarVolume</string>
     <string name="panjang">Panjang</string>
+    <string name="lebar">Lebar</string>
 </resources>
