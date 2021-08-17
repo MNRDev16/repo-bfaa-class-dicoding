@@ -34,8 +34,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val inputlebar = edtLeb.text.toString().trim()
             val inputTinggi = edtTin.text.toString().trim()
 
-            val resultVolume = inputPanjang.toDouble()*inputlebar.toDouble()* inputTinggi.toDouble()
-            textHas.text = resultVolume.toString()
+            var isEmptyField = false
+            if(inputPanjang.isEmpty()){
+                isEmptyField = true
+                edtPan.error = "This Field can not empty"
+            }
+            if(inputlebar.isEmpty()){
+                isEmptyField = true
+                edtLeb.error = "This Field can not empty"
+            }
+            if(inputTinggi.isEmpty()){
+                isEmptyField = true
+                edtTin.error = "This Field can not empty"
+            }
+            if(!isEmptyField) {
+                val resultVolume =
+                    inputPanjang.toDouble() * inputlebar.toDouble() * inputTinggi.toDouble()
+                textHas.text = resultVolume.toString()
+            }
         }
     }
 }
