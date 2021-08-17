@@ -28,7 +28,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+    override fun onClick(v: View) {
+        if(v.id == R.id.btn_countVolume){
+            val inputPanjang = edtPan.text.toString().trim()
+            val inputlebar = edtLeb.text.toString().trim()
+            val inputTinggi = edtTin.text.toString().trim()
+
+            val resultVolume = inputPanjang.toDouble()*inputlebar.toDouble()* inputTinggi.toDouble()
+            textHas.text = resultVolume.toString()
+        }
     }
 }
