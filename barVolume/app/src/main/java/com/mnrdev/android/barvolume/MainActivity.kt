@@ -2,6 +2,7 @@ package com.mnrdev.android.barvolume
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -14,6 +15,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnHit : Button
     private lateinit var textHas : TextView
 
+    companion object{
+        private const val STATE_RESULT = "state_result"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,6 +29,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         textHas = findViewById(R.id.text_result)
 
         btnHit.setOnClickListener(this)
+        if(savedInstanceState != null){
+            val result = savedInstanceState.getString(STATE_RESULT)
+            textHas.text = result
+        }
 
     }
 
@@ -53,5 +61,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 textHas.text = resultVolume.toString()
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(STATE_RESULT,textHas.text.toString())
     }
 }
