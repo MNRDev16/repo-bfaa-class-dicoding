@@ -12,4 +12,6 @@
     <string name="_150">150</string>
     <string name="_200">200</string>
     <string name="choose">Pilih</string>
+    <string name="move_to_result">Pindah Activity untuk result</string>
+    <string name="result_choose">Hasil Pilihan</string>
 </resources>
