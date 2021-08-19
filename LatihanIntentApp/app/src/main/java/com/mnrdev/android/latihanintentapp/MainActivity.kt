@@ -1,5 +1,6 @@
 package com.mnrdev.android.latihanintentapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id){
             R.id.btn_moveActivity ->{
-
+                val moveIntent = Intent(this@MainActivity,MoveActivity::class.java)
+                startActivity(moveIntent)
             }
         }
     }
