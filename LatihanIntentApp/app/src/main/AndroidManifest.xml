@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LatihanIntentApp">
-        <activity android:name=".MoveActivityWithObject"></activity>
+        <activity android:name=".MoveForResultActivity"></activity>
+        <activity android:name=".MoveActivityWithObject" />
         <activity android:name=".MoveActivityData" />
         <activity android:name=".MoveActivity" />
         <activity android:name=".MainActivity">
