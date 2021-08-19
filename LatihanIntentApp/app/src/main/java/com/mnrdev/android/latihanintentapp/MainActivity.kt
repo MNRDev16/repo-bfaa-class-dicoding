@@ -13,9 +13,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val btnMoveActivity : Button = findViewById(R.id.btn_moveActivity)
         val btnMoveData : Button = findViewById(R.id.btn_move_with_data)
+        val btnMoveObject : Button = findViewById(R.id.btn_move_with_object)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveData.setOnClickListener(this)
+        btnMoveObject.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -29,6 +31,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 moveDataIntent.putExtra(MoveActivityData.STATE_NAME,"MNR Dev")
                 moveDataIntent.putExtra(MoveActivityData.STATE_AGE,1)
                 startActivity(moveDataIntent)
+            }
+            R.id.btn_move_with_object -> {
+
             }
         }
     }
