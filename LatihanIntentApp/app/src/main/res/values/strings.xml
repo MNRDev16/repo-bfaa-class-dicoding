@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Latihan Intent App</string>
+    <string name="move_to_moveActivity">Pindah ke MoveActivity</string>
 </resources>
