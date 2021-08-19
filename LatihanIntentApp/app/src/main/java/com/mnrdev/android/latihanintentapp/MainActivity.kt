@@ -6,8 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var tvResult :TextView
+
+    companion object{
+        const val REQUEST_CODE = 100
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,11 +23,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btnMoveData : Button = findViewById(R.id.btn_move_with_data)
         val btnMoveObject : Button = findViewById(R.id.btn_move_with_object)
         val btnDial : Button = findViewById(R.id.btn_dialphone)
+        val btnResultFromActivity : Button = findViewById(R.id.btn_move_for_result)
+
+        tvResult = findViewById(R.id.tv_result_for_activity)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveData.setOnClickListener(this)
         btnMoveObject.setOnClickListener(this)
         btnDial.setOnClickListener(this)
+        btnResultFromActivity.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -47,6 +58,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val phoneNumber = "085234729654"
                 val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
                 startActivity(dialIntent)
+            }
+            R.id.btn_move_for_result -> {
+                val moveResult = Intent(this,MoveForResultActivity::class.java)
+                startActivityForResult(moveResult, REQUEST_CODE)
+            }
+        }
+        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+
+            if(requestCode == REQUEST_CODE){
+                if(resultCode == MoveForResultActivity.RESULT_CODE){
+                    val selectedValue = data?.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_NUMBER,0)
+                    tvResult.text = "Hasil : $selectedValue"
+                }
             }
         }
     }
