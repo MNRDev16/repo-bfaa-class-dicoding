@@ -5,4 +5,5 @@
     <string name="move_activity_with_object">Pindah Activity dengan Object</string>
     <string name="receiving_data">Menerima data ...</string>
     <string name="reveiced_object">Menerima Object</string>
+    <string name="dial_phoneS">Dial a Phone Number</string>
 </resources>
