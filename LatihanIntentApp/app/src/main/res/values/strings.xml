@@ -4,4 +4,5 @@
     <string name="move_activity_with_data">Pindah Activity dengan data</string>
     <string name="move_activity_with_object">Pindah Activity dengan Object</string>
     <string name="receiving_data">Menerima data ...</string>
+    <string name="reveiced_object">Menerima Object</string>
 </resources>
