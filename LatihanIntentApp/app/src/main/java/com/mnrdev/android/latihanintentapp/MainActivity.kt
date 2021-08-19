@@ -33,6 +33,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(moveDataIntent)
             }
             R.id.btn_move_with_object -> {
+                val dataObject = Person(
+                    "MNR Dev", 1,"Kediri", "mnrdev@gmail.com",
+                )
+                val moveObjectIntent = Intent(this,MoveActivityWithObject::class.java)
+                moveObjectIntent.putExtra(MoveActivityWithObject.EXTRA_OBJECT,dataObject)
+                startActivity(moveObjectIntent)
 
             }
         }
