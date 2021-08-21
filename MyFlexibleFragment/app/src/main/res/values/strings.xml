@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyFlexibleFragment</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <<string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="this_profile">Ini activity Profile</string>
     <string name="this_category">Ini fragment Category</string>
     <string name="category_lifestyle">Ke fragment Lifestyle</string>
