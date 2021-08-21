@@ -16,5 +16,5 @@ class DetailCategoryFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail_category, container, false)
     }
 
-    
+
 }
