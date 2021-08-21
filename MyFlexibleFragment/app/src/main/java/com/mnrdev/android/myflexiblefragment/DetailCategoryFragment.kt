@@ -15,6 +15,12 @@ class DetailCategoryFragment : Fragment() {
     lateinit var tvCategoryDescription : TextView
     lateinit var btnProfil : Button
     lateinit var btnShowDialog : Button
+    var description : String? = null
+
+    companion object{
+        var EXTRA_NAME = "extra_name"
+        var EXTRA_DESCRIPTION = "extra_description"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,5 +37,19 @@ class DetailCategoryFragment : Fragment() {
         btnProfil = view.findViewById(R.id.btn_profil)
         btnShowDialog = view.findViewById(R.id.btn_show_dialog)
     }
-    
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        if(savedInstanceState != null){
+            val descFromBundle = savedInstanceState.getString(EXTRA_DESCRIPTION)
+            description = descFromBundle
+        }
+        if (arguments != null){
+            val categoryName = arguments?.getString(EXTRA_NAME)
+            tvCategoryName.text = categoryName
+            tvCategoryDescription.text = description
+        }
+    }
+
 }
