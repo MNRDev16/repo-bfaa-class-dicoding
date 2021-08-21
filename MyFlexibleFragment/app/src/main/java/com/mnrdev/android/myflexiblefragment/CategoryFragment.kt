@@ -25,7 +25,7 @@ class CategoryFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v?.id == R.id.btn_detail_category){
-            
+
         }
     }
 }
