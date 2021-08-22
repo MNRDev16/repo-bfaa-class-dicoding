@@ -1,5 +1,6 @@
 package com.mnrdev.android.myflexiblefragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -60,5 +61,19 @@ class OptionDialogFragment : DialogFragment() {
         btnClose.setOnClickListener {
             dialog?.cancel()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val fragment = parentFragment
+        if (fragment is DetailCategoryFragment){
+            val detailCategoryFragment = DetailCategoryFragment
+            this.optionDialogListener = detailCategoryFragment.optionDialogListener
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        this.optionDialogListener = null
     }
 }
