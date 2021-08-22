@@ -67,8 +67,8 @@ class OptionDialogFragment : DialogFragment() {
         super.onAttach(context)
         val fragment = parentFragment
         if (fragment is DetailCategoryFragment){
-            val detailCategoryFragment = DetailCategoryFragment
-            this.optionDialogListener = detailCategoryFragment.optionDialogListener
+            val detailCategoryFragment = DetailCategoryFragment()
+            this.optionDialogListener = detailCategoryFragment.optionDialogFragment
         }
     }
 
