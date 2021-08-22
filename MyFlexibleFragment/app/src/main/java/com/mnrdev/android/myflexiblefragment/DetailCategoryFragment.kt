@@ -1,5 +1,6 @@
 package com.mnrdev.android.myflexiblefragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +44,9 @@ class DetailCategoryFragment : Fragment() {
 
             val mFragment = childFragmentManager
             mOptionDialogFragment.show(mFragment,OptionDialogFragment::class.java.simpleName)
+        }
+        btnProfil.setOnClickListener {
+            val profilIntent = Intent(activity,ProfilActivity::class.java)
         }
     }
 
