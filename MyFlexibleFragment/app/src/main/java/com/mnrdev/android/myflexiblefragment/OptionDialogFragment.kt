@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.fragment.app.DialogFragment
 
-class OptionDialogFragment : Fragment() {
+class OptionDialogFragment : DialogFragment() {
 
     private lateinit var rgOption :RadioGroup
     private lateinit var rbSaf : RadioButton
@@ -21,7 +22,7 @@ class OptionDialogFragment : Fragment() {
     private var optionDialogListener : OnOptionDialogListener? = null
 
     interface OnOptionDialogListener {
-
+        fun onOptionChosen(text : String?)
     }
 
     override fun onCreateView(
@@ -41,5 +42,23 @@ class OptionDialogFragment : Fragment() {
         rbSaf = view.findViewById(R.id.rb_saf)
         btnChoose = view.findViewById(R.id.btn_choose)
         btnClose = view.findViewById(R.id.btn_close)
+
+        btnChoose.setOnClickListener {
+            val checkedRadioButtonId = rgOption.checkedRadioButtonId
+            if(checkedRadioButtonId != -1){
+                var coach : String? = null
+                when (checkedRadioButtonId){
+                    R.id.rb_saf -> coach = rbSaf.text.toString().trim()
+                    R.id.rb_mou -> coach = rbMou.text.toString().trim()
+                    R.id.rb_lvg -> coach = rbLvg.text.toString().trim()
+                    R.id.rb_dav -> coach = rbDav.text.toString().trim()
+                }
+                optionDialogListener?.onOptionChosen(coach)
+                dialog?.dismiss()
+            }
+        }
+        btnClose.setOnClickListener {
+            dialog?.cancel()
+        }
     }
 }
