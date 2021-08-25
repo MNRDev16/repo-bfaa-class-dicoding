@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">SubmissionBFAA1</string>
+    <string name="user_id">User ID</string>
+    <string name="user_name">User Name</string>
     <!-- Other string resources-->
 
     <string-array name="username">
