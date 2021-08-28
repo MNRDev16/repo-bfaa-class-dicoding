@@ -16,7 +16,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            android:layout_margin="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             tools:src="@tools:sample/avatars"/>
 
         <TextView
@@ -24,11 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/tv_follower"
             app:layout_constraintBottom_toTopOf="@+id/tv_follower"
             app:layout_constraintEnd_toEndOf="@+id/tv_follower"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="4" />
+            android:text="@string/_12345" />
         <TextView
             android:id="@+id/tv_follower"
             android:layout_width="wrap_content"
@@ -45,10 +47,11 @@
             android:id="@+id/tv_num_following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/tv_following"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_follower"
             app:layout_constraintEnd_toEndOf="@+id/tv_following"
-            android:text="1234" />
+            android:text="@string/_12345" />
         <TextView
             android:id="@+id/tv_following"
             android:layout_width="wrap_content"
@@ -63,10 +66,11 @@
             android:id="@+id/tv_num_repository"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/tv_repository"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_following"
             app:layout_constraintEnd_toEndOf="@+id/tv_repository"
-            android:text="1234" />
+            android:text="@string/_12345" />
         <TextView
             android:id="@+id/tv_repository"
             android:layout_width="wrap_content"
@@ -81,13 +85,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/user_name"
+            android:layout_marginTop="8sp"
+            android:layout_marginStart="8sp"
             app:layout_constraintStart_toStartOf="@+id/image_user"
             app:layout_constraintTop_toBottomOf="@+id/image_user"/>
         <TextView
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/image_user"
+            android:layout_marginTop="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
             android:text="@string/location"/>
         <TextView
