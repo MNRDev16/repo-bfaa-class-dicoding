@@ -12,6 +12,7 @@ import com.mnrdev.android.submissionbfaa1.databinding.ActivityDetailBinding
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var detailViewBinding : ActivityDetailBinding
+    private var user : User? = null
 
     companion object{
         const val EXTRA_USER = "extra_user"
@@ -21,7 +22,7 @@ class DetailActivity : AppCompatActivity() {
         detailViewBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailViewBinding.root)
 
-        val user = intent.getParcelableExtra<User>(EXTRA_USER)
+        user = intent.getParcelableExtra<User>(EXTRA_USER)
 
         Glide.with(this)
             .load(user?.avatar)
@@ -47,15 +48,21 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_share){
+        actionShare(item.itemId,user)
+        return super.onOptionsItemSelected(item)
+    }
+    private fun actionShare(itemID : Int,user : User?){
+        if(itemID == R.id.action_share){
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            var shareBody =" Your body"
-            var shareSub = "Your Sub"
+            var shareBody = user?.userID
+            var shareSub = "Name : ${user?.userName} \n" +
+                    "Location : ${user?.location} \n" +
+                    "Company : ${user?.company}"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT,shareBody)
             shareIntent.putExtra(Intent.EXTRA_TEXT,shareSub)
             startActivity(Intent.createChooser(shareIntent,"Sahe using"))
         }
-        return super.onOptionsItemSelected(item)
     }
+
 }
