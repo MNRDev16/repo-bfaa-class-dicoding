@@ -10,12 +10,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Handler().postDelayed(Runnable(){
-            fun run(){
-                val home = Intent(this,MainActivity::class.java)
-                startActivity(home)
-                finish()
-            }
+        supportActionBar?.hide()
+
+        Handler(mainLooper).postDelayed({
+            val home = Intent(this,MainActivity::class.java)
+            startActivity(home)
+            finish()
         },4000)
     }
 }
