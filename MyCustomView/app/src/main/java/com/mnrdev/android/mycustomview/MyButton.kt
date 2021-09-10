@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -27,6 +28,17 @@ class MyButton : AppCompatButton {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        background = when {
+            isEnabled -> enableBackground
+            else -> disableBackground
+        }
+        setTextColor(txtColor)
+        textSize = 12f
+        gravity = Gravity.CENTER
+        text = when {
+            isEnabled -> "Submit"
+            else -> "Isi dulu"
+        }
     }
 
     private fun init(){
