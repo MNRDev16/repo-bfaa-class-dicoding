@@ -2,22 +2,36 @@ package com.mnrdev.android.mycustomview
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 
 class MyButton : AppCompatButton {
 
-    constructor(context : Context) : super(context){
+    private var disableBackground : Drawable? = null
+    private var enableBackground : Drawable? = null
+    private var txtColor : Int = 0
 
+
+    constructor(context : Context) : super(context){
+        init()
     }
     constructor(context : Context, attrs : AttributeSet) : super(context, attrs){
-
+        init()
     }
     constructor(context: Context,attrs: AttributeSet, defStyleAttr : Int) : super(context, attrs, defStyleAttr){
-
+        init()
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+    }
+
+    private fun init(){
+        txtColor = ContextCompat.getColor(context, android.R.color.background_light)
+        enableBackground = ResourcesCompat.getDrawable(resources,R.drawable.bg_button,null)
+        disableBackground = ResourcesCompat.getDrawable(resources,R.drawable.bg_button_disable,null)
     }
 }
