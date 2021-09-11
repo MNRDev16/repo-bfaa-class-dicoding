@@ -13,7 +13,7 @@ import androidx.core.content.res.ResourcesCompat
 
 class MyEditText : AppCompatEditText, View.OnTouchListener {
 
-    internal lateinit var mClearButtonImage : Drawable
+    private lateinit var mClearButtonImage : Drawable
 
     constructor(context : Context): super(context){
         init()
@@ -41,7 +41,7 @@ class MyEditText : AppCompatEditText, View.OnTouchListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s.toString().isEmpty()) showClearButton() else hideClearButton()
+                if(s.toString().isNotEmpty()) showClearButton() else hideClearButton()
             }
 
             override fun afterTextChanged(s: Editable?) {
