@@ -12,5 +12,15 @@
         tools:layout="@layout/fragment_home">
 
     </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.mnrdev.android.mynavigation.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
+    <activity
+        android:id="@+id/profileActivity"
+        android:name="com.mnrdev.android.mynavigation.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
 
 </navigation>
