@@ -12,5 +12,5 @@
         tools:layout="@layout/fragment_home">
 
     </fragment>
-    
+
 </navigation>

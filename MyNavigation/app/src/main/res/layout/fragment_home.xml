@@ -11,16 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment"
-        android:layout_marginBottom="16dp"/>
+        android:layout_margin="16dp"/>
     <Button
         android:id="@+id/btn_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/to_category"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_profil"
+        android:id="@+id/btn_profile"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/to_profile"/>
 </LinearLayout>
