@@ -2,15 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/home_fragment"
+    app:startDestination="@id/homeFragment"
     android:id="@+id/main_navigation">
 
     <fragment
-        android:id="@+id/home_fragment"
+        android:id="@+id/homeFragment"
         android:label="fragment_home"
         android:name="com.mnrdev.android.mynavigation.HomeFragment"
         tools:layout="@layout/fragment_home">
 
+        <action
+            android:id="@+id/action_home_fragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_profileActivity"
+            app:destination="@id/profileActivity" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
