@@ -11,4 +11,5 @@
     <string name="category_sport">Ke fragment Sport</string>
     <string name="category_description">Category Description</string>
     <string name="to_home">Ke fragment Home</string>
+    <string name="show_dialog">Tampilkan Dialog</string>
 </resources>
