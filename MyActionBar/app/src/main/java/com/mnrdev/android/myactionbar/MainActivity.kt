@@ -46,20 +46,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        return when (item.itemId){
             R.id.menu_1 ->{
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_container,MenuFragment())
                     .addToBackStack(null)
                     .commit()
-                return true
+                true
             }
             R.id.menu_2 -> {
                 val intent = Intent(this,MenuActivity::class.java)
                 startActivity(intent)
-                return true
+                true
             }
-            else -> return true
+            else -> true
         }
+
     }
 }
