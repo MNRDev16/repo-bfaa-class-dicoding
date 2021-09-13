@@ -16,5 +16,22 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
+            android:title="@string/menu_cart"/>
     </group>
+    <item android:title="@string/menu_map">
+        <menu>
+            <item android:id="@+id/menu_maps"
+                android:icon="@drawable/ic_baseline_map_24"
+                android:title="@string/menu_map"/>
+            <item android:title="@string/menu_hotel"
+                android:icon="@drawable/ic_baseline_hotel_24"
+                android:id="@+id/menu_hotel"/>
+            <item android:id="@+id/menu_subway"
+                android:title="@string/menu_subway"
+                android:icon="@drawable/ic_baseline_subway_24"/>
+        </menu>
+    </item>
 </menu>
