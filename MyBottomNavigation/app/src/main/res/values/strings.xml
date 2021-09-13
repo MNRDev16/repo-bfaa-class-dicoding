@@ -3,4 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="this_notification_fragment">Ini Notification Fragment</string>
+    <string name="this_home_fragment">Ini Home Fragment</string>
+    <string name="this_dashboard_fragment">Ini dashboard fragment</string>
+    <string name="title_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="this_profile_fragment">Ini Profile Fragment</string>
 </resources>
