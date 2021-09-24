@@ -96,7 +96,7 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/tv_user_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
-        android:text="@string/location"/>
+        app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
@@ -113,9 +113,10 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/tv_user_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_location"
-        android:text="@string/company"/>
+        app:drawableStartCompat="@drawable/ic_outline_domain_24"/>
     <TextView
         android:id="@+id/tv_company"
         android:layout_width="wrap_content"
@@ -123,7 +124,7 @@
         android:layout_marginStart="8dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/tv_text_company"
-        app:layout_constraintTop_toBottomOf="@+id/tv_location"
+        app:layout_constraintTop_toTopOf="@+id/tv_text_company"
         android:text="@string/company"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
