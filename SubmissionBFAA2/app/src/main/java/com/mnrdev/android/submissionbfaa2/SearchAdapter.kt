@@ -23,7 +23,7 @@ class SearchAdapter(private val list: List<ItemsItem>) : RecyclerView.Adapter<Se
     }
 
     override fun onBindViewHolder(holder: SearchAdapter.ViewHolder, position: Int) {
-        val user = list.get(position)
+        val user = list[position]
 
         holder.apply {
             userName.text = user.login
@@ -34,11 +34,11 @@ class SearchAdapter(private val list: List<ItemsItem>) : RecyclerView.Adapter<Se
             .apply(RequestOptions().override(100,100))
             .into(holder.imgUser)
 
-        /*holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_USER, user)
+            intent.putExtra(DetailActivity.EXTRA_USERNAME,user.login)
             holder.itemView.context.startActivity(intent)
-        }*/
+        }
     }
 
     override fun getItemCount(): Int {

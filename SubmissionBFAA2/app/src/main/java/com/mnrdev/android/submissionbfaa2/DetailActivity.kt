@@ -25,11 +25,17 @@ class DetailActivity : AppCompatActivity() {
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
 
-        getDetailUser("")
+        val username = intent.getStringExtra(EXTRA_USERNAME)
+        getDetailUser(username)
+        createTabLayout()
 
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = username
+        }
     }
 
-    private fun onCreateTabLayout(){
+    private fun createTabLayout(){
         detailBinding.includeViewPager.apply {
             val sectionsPagerAdapter = SectionsPagerAdapter(this@DetailActivity)
             val viewPager : ViewPager2 = viewPager
@@ -92,6 +98,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object{
+        const val EXTRA_USERNAME = "extra username"
+
         @StringRes
         private val TAB_TITLE = intArrayOf(
             R.string.following,
