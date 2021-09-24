@@ -10,10 +10,10 @@ class SectionsPagerAdapter(activity : AppCompatActivity) : FragmentStateAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        val fragment : Fragment? = null
+        var fragment : Fragment? = null
         when (position){
-             0 -> FollowingFragment()
-             1 -> FollowerFragment()
+             0 -> fragment = FollowingFragment()
+             1 -> fragment = FollowerFragment()
         }
         return fragment as Fragment
     }
