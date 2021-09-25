@@ -14,6 +14,16 @@ import com.mnrdev.android.submissionbfaa2.ApiManager.response.ItemsItem
 import com.mnrdev.android.submissionbfaa2.R
 
 class UserAdapter(private val list: List<ItemsItem>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback : UserAdapter.OnItemClickCallback
+
+    interface OnItemClickCallback {
+        fun OnItemClicked(username : String)
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
         val imgUser : ImageView = itemView.findViewById(R.id.image_user)
         val userName : TextView = itemView.findViewById(R.id.tv_user_name)
@@ -37,11 +47,7 @@ class UserAdapter(private val list: List<ItemsItem>) : RecyclerView.Adapter<User
             .apply(RequestOptions().override(100,100))
             .into(holder.imgUser)
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_USERNAME,user.login)
-            holder.itemView.context.startActivity(intent)
-        }
+        holder.itemView.setOnClickListener{onItemClickCallback.OnItemClicked(user.login)}
     }
 
     override fun getItemCount(): Int {

@@ -17,5 +17,10 @@
         android:id="@+id/detailActivity"
         android:name="com.mnrdev.android.submissionbfaa2.DetailActivity"
         android:label="activity_detail"
-        tools:layout="@layout/activity_detail" />
+        tools:layout="@layout/activity_detail" >
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue="default name" />
+    </activity>
 </navigation>
