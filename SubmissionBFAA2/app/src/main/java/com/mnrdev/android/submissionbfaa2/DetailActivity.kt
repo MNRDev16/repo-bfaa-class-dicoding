@@ -6,11 +6,16 @@ import android.service.controls.ControlsProviderService
 import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.mnrdev.android.submissionbfaa2.Adapter.SectionsPagerAdapter
+import com.mnrdev.android.submissionbfaa2.ApiManager.ApiConfig
+import com.mnrdev.android.submissionbfaa2.ApiManager.response.DetailResponse
 import com.mnrdev.android.submissionbfaa2.databinding.ActivityDetailBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,15 +24,31 @@ import retrofit2.Response
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var detailBinding: ActivityDetailBinding
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
 
-        val username = intent.getStringExtra(EXTRA_USERNAME)
-        getDetailUser(username)
+        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+
+        val username = intent.getStringExtra(EXTRA_USERNAME)!!
+        viewModel.getDetailUser(username)
+
+        viewModel.detailUser.observe(this,{detailUser ->
+            setDetailData(detailUser)
+        })
         createTabLayout()
+        viewModel.isLoading.observe(this,{isLoading ->
+            showLoading(isLoading)
+        })
+
+        viewModel.failureText.observe(this,{
+            it.getContentIfNotHandled()?.let { text ->
+                Snackbar.make(window.decorView.rootView,text,Snackbar.LENGTH_SHORT).show()
+            }
+        })
 
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -46,32 +67,6 @@ class DetailActivity : AppCompatActivity() {
 
             }.attach()
         }
-    }
-    private fun getDetailUser(username : String?){
-        var id = "\"\""
-        if(username != null && username.isNotEmpty()) id = username
-        showLoading(true)
-        val client = ApiConfig.getApiService().getDetail(id)
-        client.enqueue(object : Callback<DetailResponse> {
-            override fun onResponse(
-                call: Call<DetailResponse>,
-                response: Response<DetailResponse>
-            ) {
-                showLoading(false)
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        setDetailData(responseBody)
-                    }
-                } else {
-                    Log.e(ControlsProviderService.TAG, "onFailure: ${response.message()}")
-                }
-            }
-            override fun onFailure(call: Call<DetailResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(ControlsProviderService.TAG, "onFailure: ${t.message}")
-            }
-        })
     }
 
     private fun setDetailData(userDetail : DetailResponse){
