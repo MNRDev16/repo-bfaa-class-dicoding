@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import com.mnrdev.android.submissionbfaa2.Adapter.UserAdapter
+import com.mnrdev.android.submissionbfaa2.ApiManager.response.ItemsItem
 import com.mnrdev.android.submissionbfaa2.R
+import com.mnrdev.android.submissionbfaa2.databinding.FragmentFollowingBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
+private const val USERNAME = "username"
 
 /**
  * A simple [Fragment] subclass.
@@ -18,12 +22,14 @@ private const val ARG_PARAM1 = "param1"
  */
 class FollowingFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
+    private var username: String? = null
+    private lateinit var viewModel: FollowingViewModel
+    private lateinit var followingBinding: FragmentFollowingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            username = it.getString(USERNAME)
         }
     }
 
@@ -31,8 +37,29 @@ class FollowingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_following, container, false)
+        followingBinding = FragmentFollowingBinding.inflate(inflater,container,false)
+        return followingBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(FollowingViewModel::class.java)
+
+        viewModel.followingData.observe(this.viewLifecycleOwner,{
+            setFollowingData(it.response)
+        })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if(username != null) viewModel.getFollowingData(username!!)
+        else viewModel.getFollowingData("\"\"")
+    }
+
+    private fun setFollowingData(userFollowers : List<ItemsItem>) {
+        val adapter = UserAdapter(userFollowers)
+        followingBinding.includeRecycleView.rvUserGithub.adapter = adapter
     }
 
     companion object {
@@ -45,10 +72,10 @@ class FollowingFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(username: String) =
             FollowingFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putString(USERNAME, username)
                 }
             }
     }
