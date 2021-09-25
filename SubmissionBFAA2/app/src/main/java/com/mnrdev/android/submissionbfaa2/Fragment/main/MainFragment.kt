@@ -6,26 +6,22 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.mnrdev.android.submissionbfaa2.Adapter.UserAdapter
 import com.mnrdev.android.submissionbfaa2.ApiManager.response.ItemsItem
-import com.mnrdev.android.submissionbfaa2.MainActivity
 import com.mnrdev.android.submissionbfaa2.R
 import com.mnrdev.android.submissionbfaa2.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private lateinit var viewModel: MainViewModel
     private lateinit var mainFragmentViewBinding: MainFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         setHasOptionsMenu(true)
         mainFragmentViewBinding = MainFragmentBinding.inflate(inflater,container,false)
         return mainFragmentViewBinding.root
@@ -42,6 +38,12 @@ class MainFragment : Fragment() {
             showLoading(it)
         })
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getSearchData("\"\"")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -77,6 +79,14 @@ class MainFragment : Fragment() {
     private fun setSearchData(searchUsers: List<ItemsItem>) {
         val adapter = UserAdapter(searchUsers)
         mainFragmentViewBinding.includeRecycleView.rvUserGithub.adapter = adapter
+
+        adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+            override fun OnItemClicked(username: String) {
+                val toDetailActivity = MainFragmentDirections.actionMainFragmentToDetailActivity()
+                toDetailActivity.username = username
+                view?.findNavController()?.navigate(toDetailActivity)
+            }
+        })
     }
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
