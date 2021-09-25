@@ -25,12 +25,14 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var detailBinding: ActivityDetailBinding
     private lateinit var viewModel: DetailViewModel
+    private lateinit var username : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
 
+        username = DetailActivityArgs.fromBundle(intent.extras).username
         viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
 
         val username = intent.getStringExtra(EXTRA_USERNAME)!!
@@ -58,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun createTabLayout(){
         detailBinding.includeViewPager.apply {
-            val sectionsPagerAdapter = SectionsPagerAdapter(this@DetailActivity)
+            val sectionsPagerAdapter = SectionsPagerAdapter(this@DetailActivity,username)
             val viewPager : ViewPager2 = viewPager
             viewPager.adapter = sectionsPagerAdapter
             val tabLayout : TabLayout = tabs
