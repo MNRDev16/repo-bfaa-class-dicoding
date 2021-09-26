@@ -6,6 +6,7 @@ import retrofit2.Call
 
 interface ApiService {
     @GET("search/users")
+    @Headers("Authorization: token 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")
     fun getSearch(
         @Query("q") id: String
     ): Call<SearchResponse>
