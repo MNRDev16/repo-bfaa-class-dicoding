@@ -5,9 +5,13 @@ import retrofit2.http.*
 import retrofit2.Call
 
 interface ApiService {
+    companion object{
+        const val token = "token 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"
+    }
+
     @GET("search/users")
-    @Headers("Authorization: token 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")
     fun getSearch(
+        @Header("Authorization") token : String,
         @Query("q") id: String
     ): Call<SearchResponse>
 
@@ -18,11 +22,11 @@ interface ApiService {
 
     @GET("users/{username}/followers")
     fun getFollower(
-        @Query("username") id: String
-    ): Call<UserResponse>
+        @Path("username") id: String
+    ): Call<List<ItemsItem>>
 
     @GET("users/{username}/following")
     fun getFollowing(
-        @Query("username") id: String
-    ): Call<UserResponse>
+        @Path("username") id: String
+    ): Call<List<ItemsItem>>
 }

@@ -6,22 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mnrdev.android.submissionbfaa2.Adapter.UserAdapter
 import com.mnrdev.android.submissionbfaa2.ApiManager.response.ItemsItem
-import com.mnrdev.android.submissionbfaa2.R
 import com.mnrdev.android.submissionbfaa2.databinding.FragmentFollowingBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val USERNAME = "username"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FollowingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FollowingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var username: String? = null
     private lateinit var viewModel: FollowingViewModel
     private lateinit var followingBinding: FragmentFollowingBinding
@@ -36,7 +28,7 @@ class FollowingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         followingBinding = FragmentFollowingBinding.inflate(inflater,container,false)
         return followingBinding.root
     }
@@ -46,31 +38,39 @@ class FollowingFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FollowingViewModel::class.java)
 
         viewModel.followingData.observe(this.viewLifecycleOwner,{
-            setFollowingData(it.response)
+            setFollowingData(it)
+        })
+        viewModel.login.observe(this.viewLifecycleOwner,{
+            viewModel.getFollowingData(it)
+        })
+        viewModel.failed.observe(this.viewLifecycleOwner,{
+            showFailedMessage(it,viewModel.message)
+        })
+        username?.let { viewModel.setUserLogin(it) }
+    }
+
+    private fun setFollowingData(userFollowing : List<ItemsItem>) {
+        followingBinding.includeRecycleView.rvUserGithub.layoutManager = LinearLayoutManager(this.context)
+        val adapter = UserAdapter(userFollowing)
+        followingBinding.includeRecycleView.rvUserGithub.adapter = adapter
+
+        adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+            override fun OnItemClicked(username: String) {
+            }
         })
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        if(username != null) viewModel.getFollowingData(username!!)
-        else viewModel.getFollowingData("\"\"")
-    }
-
-    private fun setFollowingData(userFollowers : List<ItemsItem>) {
-        val adapter = UserAdapter(userFollowers)
-        followingBinding.includeRecycleView.rvUserGithub.adapter = adapter
+    private fun showFailedMessage(failed : Boolean,message : String){
+        if(failed){
+            followingBinding.includeRecycleView.root.visibility = View.GONE
+            followingBinding.tvFailed.visibility = View.VISIBLE
+            followingBinding.tvFailed.text = message
+        }else{
+            followingBinding.includeRecycleView.root.visibility = View.VISIBLE
+            followingBinding.tvFailed.visibility = View.GONE
+        }
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @return A new instance of fragment FollowingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(username: String) =
             FollowingFragment().apply {
