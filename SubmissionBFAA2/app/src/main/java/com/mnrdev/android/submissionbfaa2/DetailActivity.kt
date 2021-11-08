@@ -2,8 +2,6 @@ package com.mnrdev.android.submissionbfaa2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.service.controls.ControlsProviderService
-import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
@@ -14,12 +12,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mnrdev.android.submissionbfaa2.Adapter.SectionsPagerAdapter
-import com.mnrdev.android.submissionbfaa2.ApiManager.ApiConfig
 import com.mnrdev.android.submissionbfaa2.ApiManager.response.DetailResponse
 import com.mnrdev.android.submissionbfaa2.databinding.ActivityDetailBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DetailActivity : AppCompatActivity() {
 
@@ -32,10 +26,9 @@ class DetailActivity : AppCompatActivity() {
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
 
-        username = DetailActivityArgs.fromBundle(intent.extras).username
+        username = DetailActivityArgs.fromBundle(intent.extras!!).username
         viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
 
-        val username = intent.getStringExtra(EXTRA_USERNAME)!!
         viewModel.getDetailUser(username)
 
         viewModel.detailUser.observe(this,{detailUser ->
@@ -64,9 +57,8 @@ class DetailActivity : AppCompatActivity() {
             val viewPager : ViewPager2 = viewPager
             viewPager.adapter = sectionsPagerAdapter
             val tabLayout : TabLayout = tabs
-            TabLayoutMediator(tabLayout,viewPager){tabLayout,position ->
-                tabLayout.text = resources.getString(TAB_TITLE[position])
-
+            TabLayoutMediator(tabLayout,viewPager){tab,position ->
+                tab.text = resources.getString(TAB_TITLE[position])
             }.attach()
         }
     }
@@ -95,7 +87,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object{
-        const val EXTRA_USERNAME = "extra username"
 
         @StringRes
         private val TAB_TITLE = intArrayOf(

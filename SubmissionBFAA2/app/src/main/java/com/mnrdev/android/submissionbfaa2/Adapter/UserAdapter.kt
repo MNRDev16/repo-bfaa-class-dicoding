@@ -14,7 +14,7 @@ import com.mnrdev.android.submissionbfaa2.ApiManager.response.ItemsItem
 import com.mnrdev.android.submissionbfaa2.R
 
 class UserAdapter(private val list: List<ItemsItem>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
-    private lateinit var onItemClickCallback : UserAdapter.OnItemClickCallback
+    private lateinit var onItemClickCallback : OnItemClickCallback
 
     interface OnItemClickCallback {
         fun OnItemClicked(username : String)

@@ -55,13 +55,13 @@ class DetailActivity : AppCompatActivity() {
         if(itemID == R.id.action_share){
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            var shareBody = user?.userID
-            var shareSub = "Name : ${user?.userName} \n" +
+            val shareBody = user?.userID
+            val shareSub = "Name : ${user?.userName} \n" +
                     "Location : ${user?.location} \n" +
                     "Company : ${user?.company}"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT,shareBody)
             shareIntent.putExtra(Intent.EXTRA_TEXT,shareSub)
-            startActivity(Intent.createChooser(shareIntent,"Sahe using"))
+            startActivity(Intent.createChooser(shareIntent,"Share using"))
         }
     }
 
