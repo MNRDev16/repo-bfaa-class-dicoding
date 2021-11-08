@@ -10,7 +10,7 @@
         android:id="@+id/icon_splash"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:src="@mipmap/ic_launcher_github"
+        android:src="@mipmap/ic_launcher_github_round"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

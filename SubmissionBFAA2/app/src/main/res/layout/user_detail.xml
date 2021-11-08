@@ -20,17 +20,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="24sp"
+        style="@style/MyTextAppearance.Number"
         app:layout_constraintStart_toStartOf="@+id/tv_follower"
         app:layout_constraintBottom_toTopOf="@+id/tv_follower"
         app:layout_constraintEnd_toEndOf="@+id/tv_follower"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/_12345" />
+        android:text="@string/_num" />
     <TextView
         android:id="@+id/tv_follower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24sp"
+        style="@style/MyTextAppearance"
         app:layout_constraintStart_toEndOf="@+id/image_user"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_following"
@@ -42,34 +43,35 @@
         android:id="@+id/tv_num_following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        style="@style/MyTextAppearance.Number"
         app:layout_constraintStart_toStartOf="@+id/tv_following"
         app:layout_constraintBottom_toBottomOf="@+id/tv_num_follower"
         app:layout_constraintEnd_toEndOf="@+id/tv_following"
-        android:text="@string/_12345" />
+        android:text="@string/_num" />
     <TextView
         android:id="@+id/tv_following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/MyTextAppearance"
         app:layout_constraintStart_toEndOf="@+id/tv_follower"
         app:layout_constraintTop_toTopOf="@+id/tv_follower"
         app:layout_constraintEnd_toStartOf="@+id/tv_repository"
         android:text="@string/following" />
 
-
     <TextView
         android:id="@+id/tv_num_repository"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        style="@style/MyTextAppearance.Number"
         app:layout_constraintStart_toStartOf="@+id/tv_repository"
         app:layout_constraintBottom_toBottomOf="@+id/tv_num_following"
         app:layout_constraintEnd_toEndOf="@+id/tv_repository"
-        android:text="@string/_12345" />
+        android:text="@string/_num" />
     <TextView
         android:id="@+id/tv_repository"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/MyTextAppearance"
         app:layout_constraintStart_toEndOf="@+id/tv_following"
         app:layout_constraintTop_toTopOf="@+id/tv_following"
         app:layout_constraintEnd_toEndOf="parent"

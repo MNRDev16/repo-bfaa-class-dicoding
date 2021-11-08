@@ -11,19 +11,43 @@
         android:layout_height="0dp"
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/iv_failed"
+        android:src="@drawable/ic_baseline_search_off_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"
+        android:contentDescription="@string/failed" />
+    <TextView
+        android:id="@+id/tv_failed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        style="?android:attr/progressBarStyle"
+        app:layout_constraintEnd_toEndOf="@id/iv_failed"
+        app:layout_constraintStart_toStartOf="@id/iv_failed"
+        app:layout_constraintTop_toBottomOf="@id/iv_failed"
         tools:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="24sp"
+        android:text="@string/failed"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.Material.ProgressBar.Large"
+        android:indeterminateDrawable="@drawable/custom_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
